@@ -26,14 +26,14 @@ function Crumb({ item, isCurrent }: { item: BreadcrumbItem; isCurrent: boolean }
 
   if (isCurrent) {
     return (
-      <span aria-current="page" className="text-sm font-medium text-text-heading min-w-0">
+      <span aria-current="page" className="text-sm font-medium text-heading min-w-0">
         {label}
       </span>
     );
   }
 
   const linkClasses =
-    'text-sm text-text-muted hover:text-brand-primary transition-colors min-w-0 rounded px-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30';
+    'text-sm text-muted hover:text-primary transition-colors min-w-0 rounded px-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30';
 
   if (item.href) {
     return (
@@ -51,7 +51,7 @@ function Crumb({ item, isCurrent }: { item: BreadcrumbItem; isCurrent: boolean }
     );
   }
 
-  return <span className="text-sm text-text-muted min-w-0">{label}</span>;
+  return <span className="text-sm text-muted min-w-0">{label}</span>;
 }
 
 function CrumbList({ items }: { items: BreadcrumbItem[] }) {
@@ -63,7 +63,7 @@ function CrumbList({ items }: { items: BreadcrumbItem[] }) {
           <li key={item.label} className="flex items-center min-w-0">
             <Crumb item={item} isCurrent={isCurrent} />
             {!isCurrent && (
-              <ChevronRight size={14} className="mx-1.5 sm:mx-2 text-text-muted shrink-0" aria-hidden="true" />
+              <ChevronRight size={14} className="mx-1.5 sm:mx-2 text-muted shrink-0" aria-hidden="true" />
             )}
           </li>
         );
@@ -91,11 +91,11 @@ export function Breadcrumbs({ items, className, collapseOnMobile = true }: Bread
         <ol className="flex sm:hidden items-center flex-nowrap">
           <li className="flex items-center min-w-0">
             <Crumb item={first} isCurrent={false} />
-            <ChevronRight size={14} className="mx-1.5 text-text-muted shrink-0" aria-hidden="true" />
+            <ChevronRight size={14} className="mx-1.5 text-muted shrink-0" aria-hidden="true" />
           </li>
           <li className="flex items-center shrink-0" aria-hidden="true">
-            <MoreHorizontal size={14} className="text-text-muted" />
-            <ChevronRight size={14} className="mx-1.5 text-text-muted shrink-0" />
+            <MoreHorizontal size={14} className="text-muted" />
+            <ChevronRight size={14} className="mx-1.5 text-muted shrink-0" />
           </li>
           <li className="flex items-center min-w-0">
             <Crumb item={last} isCurrent={true} />

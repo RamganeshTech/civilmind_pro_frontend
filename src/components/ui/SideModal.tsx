@@ -99,7 +99,7 @@ export const SideModal: React.FC<SideModalProps> = ({
         aria-labelledby="side-modal-title"
         onKeyDown={handleTabTrap}
         className={cn(
-          'fixed top-0 right-0 h-full bg-bg-surface shadow-2xl z-[9999] flex flex-col',
+          'fixed top-0 right-0 h-full bg-surface shadow-2xl z-[9999] flex flex-col',
           'transform transition-transform duration-300 ease-in-out',
           'border-l border-border',
           width,
@@ -108,7 +108,7 @@ export const SideModal: React.FC<SideModalProps> = ({
       >
         {/* Header */}
         <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-border shrink-0">
-          <h2 id="side-modal-title" className="text-lg font-semibold text-text-heading truncate">
+          <h2 id="side-modal-title" className="text-lg font-semibold text-heading truncate">
             {title}
           </h2>
 
@@ -120,7 +120,7 @@ export const SideModal: React.FC<SideModalProps> = ({
               type="button"
               onClick={onClose}
               aria-label="Close panel"
-              className="w-8 h-8 flex items-center justify-center rounded-full text-text-muted hover:bg-bg-surface-hover hover:text-text-body transition-colors focus-visible:ring-2 focus-visible:ring-brand-primary/30 outline-none"
+              className="w-8 h-8 flex items-center justify-center rounded-full text-muted hover:bg-surface-hover hover:text-body transition-colors focus-visible:ring-2 focus-visible:ring-primary/30 outline-none"
             >
               <X size={18} aria-hidden="true" />
             </button>

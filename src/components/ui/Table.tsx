@@ -22,8 +22,8 @@ export const TableContainer: React.FC<TableContainerProps> = ({
     aria-label={ariaLabel}
     tabIndex={0}
     className={cn(
-      'w-full overflow-x-auto rounded-xl border border-border bg-bg-surface shadow-sm',
-      'focus:outline-none focus:ring-2 focus:ring-brand-primary/20',
+      'w-full overflow-x-auto rounded-xl border border-border bg-surface shadow-sm',
+      'focus:outline-none focus:ring-2 focus:ring-primary/20',
       className
     )}
     {...props}
@@ -41,7 +41,7 @@ export const THead: React.FC<{ children: ReactNode; className?: string }> = ({
 }) => (
   <thead
     className={cn(
-      'bg-bg-surface-hover text-text-muted text-xs uppercase tracking-wider font-medium border-b border-border',
+      'bg-surface-hover text-muted text-xs uppercase tracking-wider font-medium border-b border-border',
       className
     )}
   >
@@ -89,8 +89,8 @@ export const Tr: React.FC<TrProps> = ({ children, className, onClick, ariaLabel 
       aria-label={onClick ? ariaLabel : undefined}
       className={cn(
         'transition-colors duration-150 outline-none',
-        onClick && 'cursor-pointer hover:bg-bg-surface-hover focus:bg-bg-surface-hover focus:ring-2 focus:ring-inset focus:ring-brand-primary/20',
-        !onClick && 'hover:bg-bg-surface-hover/50',
+        onClick && 'cursor-pointer hover:bg-surface-hover focus:bg-surface-hover focus:ring-2 focus:ring-inset focus:ring-primary/20',
+        !onClick && 'hover:bg-surface-hover/50',
         className
       )}
     >
@@ -103,7 +103,7 @@ export const Td: React.FC<{ children: ReactNode; className?: string }> = ({
   children,
   className,
 }) => (
-  <td className={cn('px-4 sm:px-6 py-4 text-sm text-text-body', className)}>
+  <td className={cn('px-4 sm:px-6 py-4 text-sm text-body', className)}>
     {children}
   </td>
 );

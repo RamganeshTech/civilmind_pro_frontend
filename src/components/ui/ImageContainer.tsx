@@ -62,7 +62,7 @@ export function ImageContainer({ src, alt, className }: ImageContainerProps) {
         onClick={openPreview}
         onKeyDown={handleTriggerKeyDown}
         aria-label={`View larger image: ${alt}`}
-        className="outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30 rounded-lg"
+        className="outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded-lg"
       >
         <img
           src={src}

@@ -86,7 +86,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <button
           type="button"
           onClick={() => setShowPassword((prev) => !prev)}
-          className="pointer-events-auto text-text-muted hover:text-text-body transition-colors"
+          className="pointer-events-auto text-muted hover:text-body transition-colors"
           aria-label={showPassword ? 'Hide password' : 'Show password'}
           tabIndex={0}
         >
@@ -114,7 +114,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <div className="relative">
           {leftIcon && (
             <span
-              className="absolute left-0 inset-y-0 flex items-center pl-3 text-text-muted pointer-events-none"
+              className="absolute left-0 inset-y-0 flex items-center pl-3 text-muted pointer-events-none"
               aria-hidden="true"
             >
               {leftIcon}
@@ -131,7 +131,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-invalid={!!error}
             aria-describedby={describedBy}
             className={cn(
-              'w-full rounded-lg border bg-bg-surface text-text-heading placeholder:text-text-muted',
+              'w-full rounded-lg border bg-surface text-heading placeholder:text-muted',
               'transition-colors outline-none',
               'focus:ring-2 focus:ring-offset-0',
               sizeStyles[size],
@@ -139,8 +139,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               Boolean(effectiveRightIcon) && iconPaddingRight[size],
               error
                 ? 'border-danger focus:border-danger focus:ring-danger/20'
-                : 'border-border focus:border-brand-primary focus:ring-brand-primary/20',
-              disabled && 'opacity-50 cursor-not-allowed bg-bg-surface-hover',
+                : 'border-border focus:border-primary focus:ring-primary/20',
+              disabled && 'opacity-50 cursor-not-allowed bg-surface-hover',
               className
             )}
             {...props}
@@ -148,7 +148,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
           {effectiveRightIcon && (
             <span
-              className="absolute right-0 inset-y-0 flex items-center pr-3 text-text-muted"
+              className="absolute right-0 inset-y-0 flex items-center pr-3 text-muted"
               aria-hidden={rightIcon ? 'true' : undefined}
             >
               {effectiveRightIcon}
@@ -162,7 +162,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           </p>
         )}
         {!error && helperText && (
-          <p id={helperId} className="mt-1.5 text-sm text-text-muted">
+          <p id={helperId} className="mt-1.5 text-sm text-muted">
             {helperText}
           </p>
         )}

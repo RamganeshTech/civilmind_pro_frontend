@@ -54,12 +54,12 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
           onClick={() => onChange(!checked)}
           className={cn(
             'relative inline-flex shrink-0 items-center rounded-full border transition-colors duration-200',
-            'outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1',
+            'outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-1',
             'disabled:opacity-50 disabled:cursor-not-allowed',
             trackSize[size],
             checked
-              ? 'bg-brand-primary border-brand-primary'
-              : 'bg-bg-surface-hover border-border'
+              ? 'bg-primary border-primary'
+              : 'bg-surface-hover border-border'
           )}
         >
           <span
@@ -71,9 +71,9 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
           >
             {/* Icon inside the thumb — on/off state isn't conveyed by color alone */}
             {checked ? (
-              <Check size={iconSize[size]} className="text-brand-primary" strokeWidth={3} aria-hidden="true" />
+              <Check size={iconSize[size]} className="text-primary" strokeWidth={3} aria-hidden="true" />
             ) : (
-              <X size={iconSize[size]} className="text-text-muted" strokeWidth={3} aria-hidden="true" />
+              <X size={iconSize[size]} className="text-muted" strokeWidth={3} aria-hidden="true" />
             )}
           </span>
         </button>
@@ -85,7 +85,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
                 htmlFor={toggleId}
                 onClick={() => !disabled && onChange(!checked)}
                 className={cn(
-                  'text-sm font-medium text-text-heading block',
+                  'text-sm font-medium text-heading block',
                   disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
                 )}
               >
@@ -93,7 +93,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
               </label>
             )}
             {description && (
-              <p id={descId} className="text-sm text-text-muted mt-0.5">
+              <p id={descId} className="text-sm text-muted mt-0.5">
                 {description}
               </p>
             )}

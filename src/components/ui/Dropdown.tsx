@@ -170,7 +170,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
             aria-orientation="vertical"
             onKeyDown={handleMenuKeyDown}
             className={cn(
-                'fixed z-[9999] w-48 rounded-xl shadow-lg bg-bg-surface border border-border p-1.5',
+                'fixed z-[9999] w-48 rounded-xl shadow-lg bg-surface border border-border p-1.5',
                 'flex flex-col gap-0.5 animate-in fade-in zoom-in-95 duration-150'
             )}
             style={{ top: coords.top, left: coords.left }}
@@ -194,14 +194,14 @@ export const Dropdown: React.FC<DropdownProps> = ({
                         'disabled:opacity-40 disabled:cursor-not-allowed',
                         item.isDanger
                             ? 'text-danger hover:bg-danger/10 focus:bg-danger/10'
-                            : 'text-text-body hover:bg-bg-surface-hover hover:text-text-heading focus:bg-bg-surface-hover focus:text-text-heading'
+                            : 'text-body hover:bg-surface-hover hover:text-heading focus:bg-surface-hover focus:text-heading'
                     )}
                 >
                     {item.icon && (
                         <span
                             className={cn(
                                 'shrink-0 w-5 flex justify-center mr-2.5',
-                                item.isDanger ? 'text-danger/70' : 'text-text-muted group-hover:text-brand-primary'
+                                item.isDanger ? 'text-danger/70' : 'text-muted group-hover:text-primary'
                             )}
                             aria-hidden="true"
                         >
@@ -238,7 +238,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
                     }
                 }}
                 onKeyDown={handleTriggerKeyDown}
-                className="inline-flex items-center justify-center cursor-pointer outline-none rounded-md focus-visible:ring-2 focus-visible:ring-brand-primary/30"
+                className="inline-flex items-center justify-center cursor-pointer outline-none rounded-md focus-visible:ring-2 focus-visible:ring-primary/30"
             >
                 {trigger}
             </button>

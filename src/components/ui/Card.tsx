@@ -10,7 +10,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 export const Card: React.FC<CardProps> = ({ children, className, ...props }) => (
   <div
     className={cn(
-      'bg-bg-surface border border-border rounded-xl shadow-sm overflow-visible',
+      'bg-surface border border-border rounded-xl shadow-sm overflow-visible',
       className
     )}
     {...props}
@@ -45,11 +45,11 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
     )}
   >
     <div className="min-w-0">
-      <HeadingTag id={id} className="text-base font-semibold text-text-heading truncate">
+      <HeadingTag id={id} className="text-base font-semibold text-heading truncate">
         {title}
       </HeadingTag>
       {subtitle && (
-        <p className="text-sm text-text-muted mt-0.5">{subtitle}</p>
+        <p className="text-sm text-muted mt-0.5">{subtitle}</p>
       )}
     </div>
     {action && <div className="shrink-0">{action}</div>}

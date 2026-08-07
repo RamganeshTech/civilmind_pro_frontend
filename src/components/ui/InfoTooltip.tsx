@@ -182,9 +182,9 @@ export default function InfoTooltip({
         style={{ width: iconSize, height: iconSize }}
         className={cn(
           'cursor-pointer inline-flex items-center justify-center rounded-full shrink-0',
-          'bg-bg-surface text-text-muted border border-border',
-          'hover:bg-bg-surface-hover hover:border-text-muted hover:text-text-body',
-          'focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1',
+          'bg-surface text-muted border border-border',
+          'hover:bg-surface-hover hover:border-text-muted hover:text-body',
+          'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-1',
           'transition-colors'
         )}
       >
@@ -205,14 +205,14 @@ export default function InfoTooltip({
             zIndex: 9999,
           }}
           className={cn(
-            'rounded-lg bg-bg-surface text-text-body text-sm shadow-xl border border-border px-3.5 py-3',
+            'rounded-lg bg-surface text-body text-sm shadow-xl border border-border px-3.5 py-3',
             'motion-safe:animate-in motion-safe:fade-in duration-150',
             popupClassName
           )}
         >
           <div className={cn('absolute w-0 h-0 border-[6px]', arrowStyles[resolvedPosition])} />
-          {title && <p className="font-semibold mb-1 text-text-heading">{title}</p>}
-          <p className="text-text-body leading-snug whitespace-pre-wrap">{description}</p>
+          {title && <p className="font-semibold mb-1 text-heading">{title}</p>}
+          <p className="text-body leading-snug whitespace-pre-wrap">{description}</p>
         </div>
       )}
     </span>

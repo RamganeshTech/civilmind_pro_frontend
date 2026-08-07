@@ -79,9 +79,9 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
   }, [options, searchTerm]);
 
   // Reset highlight whenever the filtered list changes
-//   useEffect(() => {
-//     setHighlightedIndex(0);
-//   }, [searchTerm, isOpen]);
+  //   useEffect(() => {
+  //     setHighlightedIndex(0);
+  //   }, [searchTerm, isOpen]);
 
   // Close on outside click
   useEffect(() => {
@@ -105,9 +105,9 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
   const openDropdown = () => {
     if (disabled) return;
     if (!isOpen) {
-    setIsOpen(true);
-    setHighlightedIndex(0); // <-- Added here
-  }
+      setIsOpen(true);
+      setHighlightedIndex(0); // <-- Added here
+    }
     // setIsOpen(true);
   };
 
@@ -174,7 +174,7 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
 
       <div className="relative">
         <span
-          className="absolute left-0 inset-y-0 flex items-center pl-3 text-text-muted pointer-events-none"
+          className="absolute left-0 inset-y-0 flex items-center pl-3 text-muted pointer-events-none"
           aria-hidden="true"
         >
           <Search size={size === 'sm' ? 16 : 18} />
@@ -207,15 +207,15 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
           }}
           onKeyDown={handleKeyDown}
           className={cn(
-            'w-full rounded-lg border bg-bg-surface text-text-heading placeholder:text-text-muted',
+            'w-full rounded-lg border bg-surface text-heading placeholder:text-muted',
             'transition-colors outline-none pl-9',
             'focus:ring-2 focus:ring-offset-0',
             sizeStyles[size],
             showClear ? 'pr-16' : 'pr-9',
             error
               ? 'border-danger focus:border-danger focus:ring-danger/20'
-              : 'border-border focus:border-brand-primary focus:ring-brand-primary/20',
-            disabled && 'opacity-50 cursor-not-allowed bg-bg-surface-hover'
+              : 'border-border focus:border-primary focus:ring-primary/20',
+            disabled && 'opacity-50 cursor-not-allowed bg-surface-hover'
           )}
           {...props}
         />
@@ -226,7 +226,7 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
               type="button"
               onClick={handleClear}
               aria-label="Clear selection"
-              className="text-text-muted hover:text-text-body transition-colors p-0.5"
+              className="text-muted hover:text-body transition-colors p-0.5"
             >
               <X size={size === 'sm' ? 14 : 16} />
             </button>
@@ -234,7 +234,7 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
           <ChevronDown
             size={size === 'sm' ? 14 : 16}
             className={cn(
-              'text-text-muted transition-transform pointer-events-none',
+              'text-muted transition-transform pointer-events-none',
               isOpen && 'rotate-180'
             )}
             aria-hidden="true"
@@ -255,11 +255,11 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
           role="listbox"
           className={cn(
             'absolute z-50 mt-1.5 w-full max-h-60 overflow-auto',
-            'bg-bg-surface border border-border rounded-lg shadow-lg py-1'
+            'bg-surface border border-border rounded-lg shadow-lg py-1'
           )}
         >
           {filteredOptions.length === 0 && (
-            <li className="px-3.5 py-2.5 text-sm text-text-muted select-none">
+            <li className="px-3.5 py-2.5 text-sm text-muted select-none">
               {emptyMessage}
             </li>
           )}
@@ -277,8 +277,8 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
                 onClick={() => selectOption(option)}
                 className={cn(
                   'flex items-center justify-between px-3.5 py-2.5 text-sm cursor-pointer select-none',
-                  isHighlighted ? 'bg-bg-surface-hover' : '',
-                  isSelected ? 'text-brand-primary font-medium' : 'text-text-body'
+                  isHighlighted ? 'bg-surface-hover' : '',
+                  isSelected ? 'text-primary font-medium' : 'text-body'
                 )}
               >
                 <span>{option.label}</span>

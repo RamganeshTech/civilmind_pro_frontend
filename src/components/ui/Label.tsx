@@ -14,7 +14,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(
       <label
         ref={ref}
         className={cn(
-          'block font-medium text-text-heading mb-1.5',
+          'block font-medium text-heading mb-1.5',
           size === 'sm' ? 'text-sm' : 'text-base',
           className
         )}
@@ -27,7 +27,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(
           </span>
         )}
         {optional && (
-          <span className="text-text-muted font-normal ml-1.5 text-xs">
+          <span className="text-muted font-normal ml-1.5 text-xs">
             (optional)
           </span>
         )}

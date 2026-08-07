@@ -15,7 +15,7 @@ const colorByType: Record<ToastType, string> = {
   success: 'border-success/20 text-success',
   error: 'border-danger/20 text-danger',
   warning: 'border-warning/20 text-warning',
-  info: 'border-brand-primary/20 text-brand-primary',
+  info: 'border-primary/20 text-primary',
 };
 
 // error/warning interrupt screen reader users immediately; success/info wait politely
@@ -35,18 +35,18 @@ function ToastRow({ toast: t }: { toast: ToastItem }) {
       aria-live={ariaLiveByType[t.type]}
       aria-atomic="true"
       className={cn(
-        'flex items-start gap-3 w-full sm:w-80 bg-bg-surface border rounded-lg shadow-lg px-4 py-3',
+        'flex items-start gap-3 w-full sm:w-80 bg-surface border rounded-lg shadow-lg px-4 py-3',
         'motion-safe:animate-in motion-safe:slide-in-from-bottom-2 motion-safe:fade-in duration-200',
         colorByType[t.type]
       )}
     >
       <Icon size={18} className="shrink-0 mt-0.5" aria-hidden="true" />
-      <p className="flex-1 text-sm text-text-body min-w-0 break-words">{t.message}</p>
+      <p className="flex-1 text-sm text-body min-w-0 break-words">{t.message}</p>
       <button
         type="button"
         onClick={() => dismissToast(t.id)}
         aria-label="Dismiss notification"
-        className="shrink-0 text-text-muted hover:text-text-body transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30 rounded"
+        className="shrink-0 text-muted hover:text-body transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded"
       >
         <X size={16} aria-hidden="true" />
       </button>
