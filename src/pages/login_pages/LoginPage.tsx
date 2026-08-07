@@ -1,12 +1,10 @@
 // pages/LoginPage.tsx
 import { useState, type FormEvent } from 'react';
 import { Building2, Mail, Lock } from 'lucide-react';
-import { toast } from '../components/ui/toast/Toast';
-import { Input } from '../components/ui/Input';
-import { Button } from '../components/ui/Button';
-// import { Input } from '@/components/ui/Input';
-// import { Button } from '@/components/ui/Button';
-// import { toast } from '@/lib/toast';
+import { toast } from '../../components/ui/toast/Toast';
+import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/Button';
+
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
