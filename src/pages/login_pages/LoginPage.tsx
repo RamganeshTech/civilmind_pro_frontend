@@ -4,14 +4,22 @@ import { Building2, Mail, Lock } from 'lucide-react';
 import { toast } from '../../components/ui/toast/Toast';
 import { Input } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
+import { useLoginUser } from '../../api_service/auth_api/authApi';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setAuthCredentials } from '../../features/slices/authSlice';
 
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch(); // <-- Add this
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+
+  const { mutateAsync: loginUserAsync, isPending } = useLoginUser();
 
   const validate = () => {
     const next: typeof errors = {};
@@ -22,18 +30,39 @@ export default function LoginPage() {
     return Object.keys(next).length === 0;
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+ const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
-    setIsLoading(true);
     try {
-      // await authService.login({ email, password, rememberMe });
+      // 1. Await the response from your hook
+      const response = await loginUserAsync({ email: email.trim(), password });
+      
+      // 2. Extract token and user data (backend returns { ok: true, token, data: user })
+      // Notice we alias 'data' to 'user' for clarity
+      const {  data: user } = response as any; 
+
+      // 3. Dispatch to Redux store
+      dispatch(
+        setAuthCredentials({
+          _id: user._id,
+          userName: user.userName, // Adjust based on your exact DB field
+          organizationId: user.organizationId._id || null,
+          role: user.role,
+          profileImageUrl: user.profileImageUrl || null,
+          isPlatformAdmin: user.isPlatformAdmin || false,
+          
+          // If your backend populates organization details, map them here. 
+          // Otherwise, default to null as per your slice.
+          organizationName: user.organizationId?.name ||  null,
+          organizationUrl: user.organizationId?.logo?.url || null,
+        })
+      );
+
       toast.success('Signed in successfully');
+      navigate('/projects'); // Navigate to dashboard
     } catch (err: any) {
-      toast.error('Invalid email or password');
-    } finally {
-      setIsLoading(false);
+      toast.error(err?.message || 'Invalid email or password');
     }
   };
 
@@ -137,7 +166,7 @@ export default function LoginPage() {
               </a>
             </div>
 
-            <Button type="submit" fullWidth isLoading={isLoading} loadingText="Signing in...">
+            <Button type="submit" fullWidth isLoading={isPending} loadingText="Signing in...">
               Sign in
             </Button>
           </form>

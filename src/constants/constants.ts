@@ -1,14 +1,14 @@
-import noimg from '../assets/no image.jpeg'
-import DLogo from '../assets/daily-grades-app-icon-generic-square.png'
+// import noimg from '../assets/no image.jpeg'
+// import DLogo from '../assets/daily-grades-app-icon-generic-square.png'
 
 
 import { type UserRole } from "../features/slices/authSlice";
 
 
-export const DOMAIN_NAME = "Daily Grades"
-export const DOMAIN_IMG = DLogo
+export const DOMAIN_NAME = "CIVIL MIND PRO"
+// export const DOMAIN_IMG = DLogo
 
-export const NO_IMAGE = noimg
+// export const NO_IMAGE = noimg
 
 
 export type ValidUserRole = Exclude<UserRole, null>;

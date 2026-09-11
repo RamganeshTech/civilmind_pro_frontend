@@ -8,7 +8,7 @@ export interface AuthState {
   userName: string | null; // Renamed for clarity
   organizationId: string | null;
   role: UserRole;
-  token: string | null;
+  // token: string | null;
   profileImageUrl: string | null
   isAuthenticated: boolean;
 
@@ -23,7 +23,7 @@ const initialState: AuthState = {
   profileImageUrl: null,
   organizationId: null,
   role: null,
-  token: null,
+  // token: null,
   isAuthenticated: false,
   isPlatformAdmin: false,
   organizationName: null,
@@ -41,7 +41,7 @@ const authSlice = createSlice({
         userName: string;
         organizationId: string | null;
         role: UserRole;
-        token: string;
+        // token: string;
         profileImageUrl: string | null;
         isPlatformAdmin: boolean;
         organizationName: string | null;
@@ -52,7 +52,7 @@ const authSlice = createSlice({
       state.userName = action.payload.userName;
       state.organizationId = action.payload.organizationId;
       state.role = action.payload.role;
-      state.token = action.payload.token;
+      // state.token = action.payload.token;
       state.profileImageUrl = action.payload.profileImageUrl;
       state.isAuthenticated = true;
       state.isPlatformAdmin = action.payload.isPlatformAdmin;

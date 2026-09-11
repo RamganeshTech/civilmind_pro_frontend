@@ -1,5 +1,5 @@
 // components/ui/Table.tsx
-import type { HTMLAttributes, KeyboardEvent, ReactNode, ThHTMLAttributes } from 'react';
+import type { HTMLAttributes, KeyboardEvent, ReactNode, TdHTMLAttributes, ThHTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
 
 interface TableContainerProps extends HTMLAttributes<HTMLDivElement> {
@@ -99,11 +99,17 @@ export const Tr: React.FC<TrProps> = ({ children, className, onClick, ariaLabel 
   );
 };
 
-export const Td: React.FC<{ children: ReactNode; className?: string }> = ({
+interface TdProps extends TdHTMLAttributes<HTMLTableCellElement> {
+  children: ReactNode;
+  className?: string;
+}
+
+export const Td: React.FC<TdProps> = ({
   children,
+  colSpan,
   className,
 }) => (
-  <td className={cn('px-4 sm:px-6 py-4 text-sm text-body', className)}>
+  <td colSpan={colSpan} className={cn('px-4 sm:px-6 py-4 text-sm text-body', className)}>
     {children}
   </td>
 );

@@ -4,7 +4,7 @@ import { Loader2 } from 'lucide-react';
 import { cn } from '../../lib/cn';
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
-type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonSize = 'sm' | 'md' | 'lg' | "icon";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -31,12 +31,14 @@ const variantStyles: Record<ButtonVariant, string> = {
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
+  icon: 'h-8 text-base px-2 gap-1 rounded-sm',
   sm: 'h-9 text-sm px-3 gap-1.5 rounded-md',
   md: 'h-10 text-sm px-4 gap-2 rounded-md',
   lg: 'h-11 text-base px-5 gap-2 rounded-lg',
 };
 
 const spinnerSize: Record<ButtonSize, number> = {
+  icon: 12,
   sm: 14,
   md: 16,
   lg: 18,
