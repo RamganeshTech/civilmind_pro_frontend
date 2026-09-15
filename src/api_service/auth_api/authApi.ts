@@ -39,6 +39,19 @@ export interface RegisterUserParams {
 
 const ALLOWED_ROLES: UserRole[] = AUTH_CHECK_ROLES;
 
+
+
+export const fetchAuthSession = async () => {
+  try {
+    // Calls the GET /me route you set up in your backend
+    const { data } = await Api.get('/api/v1/auth/isauthenticated');
+    return data;
+  } catch (error: any) {
+    const errorMessage = error.response?.data?.message || error.message || 'Session expired or invalid';
+    throw new Error(errorMessage, { cause: error });
+  }
+};
+
 // --- 1. Login Hook ---
 export const useLoginUser = () => {
   return useMutation({

@@ -60,7 +60,7 @@ export default function LoginPage() {
       );
 
       toast.success('Signed in successfully');
-      navigate('/projects'); // Navigate to dashboard
+      navigate('/layout/projects'); // Navigate to dashboard
     } catch (err: any) {
       toast.error(err?.message || 'Invalid email or password');
     }

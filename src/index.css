@@ -2,14 +2,21 @@
 
 :root {
   /* Backgrounds */
-  --color-page: #F4F6F8;
-  --color-surface: #FBFBFC;
+  /* --color-page: #F4F6F8; */
+  --color-page: #FFFEFC;
+  /* --color-page: #FFFFFF; */
+  /* --color-surface: #FBFBFC; */
+  --color-surface: #FFFFFC;
+  /* --color-surface-raised: #FBFBFC; */
   --color-surface-hover: #F1F3F5;
+  --color-primary-text: #FFFFFF;
 
   /* Text */
   --color-heading: #1C2128;
   --color-body: #3A4149;
   --color-muted: #6B7280;
+
+  --color-table-header: #F8F7F4; /* or #F7F6F2 for slightly more contrast */
 
   /* Borders */
   --color-border: #DFE3E8;
@@ -29,10 +36,12 @@
   --color-page: var(--color-page);
   --color-surface: var(--color-surface);
   --color-surface-hover: var(--color-surface-hover);
+  --color-primary-text: var(--color-primary-text);
 
   --color-heading: var(--color-heading);
   --color-body: var(--color-body);
   --color-muted: var(--color-muted);
+  --color-table-header: var(--color-table-header);
 
   --color-border: var(--color-border);
 

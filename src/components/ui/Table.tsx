@@ -41,7 +41,7 @@ export const THead: React.FC<{ children: ReactNode; className?: string }> = ({
 }) => (
   <thead
     className={cn(
-      'bg-surface-hover text-muted text-xs uppercase tracking-wider font-medium border-b border-border',
+      'bg-table-header text-muted text-xs uppercase tracking-wider font-medium border-b border-border',
       className
     )}
   >

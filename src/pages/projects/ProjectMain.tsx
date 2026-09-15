@@ -164,10 +164,10 @@ const ProjectMain: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-col w-full h-screen max-h-screen bg-page p-4 sm:p-6 lg:p-8 overflow-hidden">
+        <div className="flex flex-col w-full h-full bg-page overflow-hidden">
 
             {/* --- Header --- */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 shrink-0">
+            <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 shrink-0">
                 <div>
                     <h1 className="text-2xl font-semibold text-heading">Projects</h1>
                     <p className="text-sm text-muted mt-1">Manage and track all construction projects.</p>
@@ -194,7 +194,7 @@ const ProjectMain: React.FC = () => {
                         Add Project
                     </Button>
                 </div>
-            </div>
+            </header>
 
             {/* --- Main Content Layout (Responsive 25-30% Filters / 70-75% Table) --- */}
             <div className="flex-1 flex flex-col lg:flex-row gap-4 relative min-h-0">
