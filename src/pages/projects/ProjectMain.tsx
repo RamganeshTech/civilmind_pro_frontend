@@ -167,14 +167,13 @@ const ProjectMain: React.FC = () => {
         <div className="flex flex-col w-full h-full bg-page overflow-hidden">
 
             {/* --- Header --- */}
-            <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 shrink-0">
+            {/* <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 border-b border-border py-2 shadow-sm  shrink-0">
                 <div>
                     <h1 className="text-2xl font-semibold text-heading">Projects</h1>
                     <p className="text-sm text-muted mt-1">Manage and track all construction projects.</p>
                 </div>
 
                 <div className="flex items-center gap-3 w-full sm:w-auto">
-                    {/* Mobile Filter Toggle Button */}
                     <Button
                         variant="secondary"
                         className="lg:hidden w-full sm:w-auto"
@@ -189,6 +188,39 @@ const ProjectMain: React.FC = () => {
                         size="md"
                         className="w-full sm:w-auto"
                         leftIcon={<Plus size={16} />}
+                        onClick={handleOpenCreate}
+                    >
+                        Add Project
+                    </Button>
+                </div>
+            </header> */}
+
+            {/* --- Header --- */}
+            <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 mb-5 border-b border-border shrink-0">
+                <div className="flex flex-col">
+                    <div className="flex items-center gap-2.5">
+                        {/* Adding the module icon to match the new standard */}
+                        <Building2 className="w-6 h-6 text-primary" />
+                        <h1 className="text-xl sm:text-2xl font-bold text-heading">Projects</h1>
+                    </div>
+                    <p className="text-sm text-muted mt-1">Manage and track all construction projects.</p>
+                </div>
+
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                    {/* Mobile Filter Toggle Button */}
+                    <Button
+                        variant="secondary"
+                        className="lg:hidden flex-1 sm:flex-none inline-flex flex-row items-center justify-center whitespace-nowrap"
+                        leftIcon={<Filter className="w-4 h-4" />}
+                        onClick={() => setIsMobileFilterOpen(true)}
+                    >
+                        Filters
+                    </Button>
+
+                    <Button
+                        variant="primary"
+                        className="flex-1 sm:flex-none inline-flex flex-row items-center justify-center whitespace-nowrap"
+                        leftIcon={<Plus className="w-4 h-4" />}
                         onClick={handleOpenCreate}
                     >
                         Add Project

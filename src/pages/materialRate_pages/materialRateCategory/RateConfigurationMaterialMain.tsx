@@ -78,13 +78,14 @@ const RateConfigurationMaterialMain: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full bg-page text-body">
-      <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-6 bg-surface border-b border-border shadow-sm">
+      
+      <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4  bg-surface border-b border-border shadow-[0_2px_4px_-1px_rgba(0,0,0,0.04)]">
         <div className="flex flex-col">
           <div className="flex items-center gap-2.5">
-            <Layers className="w-6 h-6 text-primary" />
-            <h1 className="text-xl sm:text-2xl font-bold text-heading">Material Categories</h1>
+            <Layers strokeWidth={2.6} className="w-6 h-6 text-primary" />
+            <h1 className="text-lg sm:text-xl font-bold text-heading">Material Categories</h1>
           </div>
-          <p className="text-sm text-muted mt-1">Manage categories for estimating and rates.</p>
+          <p className="text-sm text-muted font-medium mt-1">Manage categories for estimating and rates.</p>
         </div>
 
         <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -97,24 +98,23 @@ const RateConfigurationMaterialMain: React.FC = () => {
               className="pl-9 w-full"
             />
           </div>
-           <Button
+
+          <Button
             variant="secondary"
-            // className="shrink-0 flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium bg-primary hover:bg-primary-hover text-primary-text rounded-lg transition-colors"
             className="shrink-0 inline-flex flex-row items-center justify-center whitespace-nowrap gap-1.5 px-3.5 py-2 text-sm font-medium"
             leftIcon={<Archive className="w-4 h-4" />}
             onClick={handleBackupNavigate}
           >
-            <span>Archive</span>
+            Archive
           </Button>
 
           <Button
             variant="primary"
-            // className="shrink-0 flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium bg-primary hover:bg-primary-hover text-primary-text rounded-lg transition-colors"
             className="shrink-0 inline-flex flex-row items-center justify-center whitespace-nowrap gap-1.5 px-3.5 py-2 text-sm font-medium"
             leftIcon={<Plus className="w-4 h-4" />}
             onClick={handleOpenCreate}
           >
-            <span>New Category</span>
+            New Category
           </Button>
         </div>
       </header>

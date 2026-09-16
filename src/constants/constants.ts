@@ -3,7 +3,7 @@
 
 
 import { type UserRole } from "../features/slices/authSlice";
-import { Building2, FolderKanban, LayoutDashboard, type LucideProps } from 'lucide-react';
+import { Building2, FolderKanban, HardHat, Layers, LayoutDashboard, type LucideProps } from 'lucide-react';
 import { type ComponentType } from 'react';
 
 
@@ -60,7 +60,8 @@ export const baseManagementMenu: MenuItem[] = [
     { name: 'Dashboard', path: "/layout/projects", icon: LayoutDashboard },
     { name: 'Organization', path: "/layout/organization", icon: Building2 },
     { name: 'Projects',  path: '/layout/projects',  icon: FolderKanban},
-    { name: 'Rate Masters',  path: '/layout/rate-configuration',  icon: FolderKanban},
+    { name: 'Rate Masters',  path: '/layout/rate-configuration',  icon: Layers},
+    { name: 'Labour Category',  path: '/layout/labour-configuration',  icon: HardHat},
 
     // { name: 'Class', path: "/dashboard/class", icon: 'fas fa-chalkboard' },
 

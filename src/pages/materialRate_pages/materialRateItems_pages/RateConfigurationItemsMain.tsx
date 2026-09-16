@@ -3,7 +3,8 @@ import React, { useState, useMemo } from 'react';
 import { useParams, useNavigate, useLocation, Outlet } from 'react-router-dom';
 import {
     ArrowLeft, Search, Plus, Check, X, Edit2, Trash2, TrendingUp, TrendingDown, Minus,
-    Loader2
+    Loader2,
+    Archive
 } from 'lucide-react';
 // import { 
 //   useGetAllMaterialItems, useCreateMaterialItem, useUpdateMaterialItem, useDeleteMaterialItem 
@@ -230,7 +231,7 @@ export const RateConfigurationItemsMain: React.FC = () => {
 
                     <Button
                         variant="secondary"
-                        leftIcon={<Plus className="w-4 h-4 shrink-0" />}
+                        leftIcon={<Archive className="w-4 h-4 shrink-0" />}
                         onClick={() => {
                             navigate('backup')
                         }}
@@ -245,30 +246,30 @@ export const RateConfigurationItemsMain: React.FC = () => {
             {/* Main Grid/Table View */}
             <main className="flex-1 overflow-auto p-4 sm:p-6">
                 <div className="border border-border rounded-xl bg-surface shadow-sm overflow-hidden min-w-[850px]">
-                    <table className="w-full border-collapse text-left text-xs">
+                    <table className="w-full border-collapse text-left">
                         <thead>
-                            <tr className="border-b border-border bg-surface-hover/50 text-muted font-semibold uppercase tracking-wider text-[11px]">
-                                <th className="py-3 px-3">Product Name</th>
+                            <tr className="border-b border-border bg-surface-hover/80 text-heading font-semibold uppercase tracking-wider text-[11px]">
+                                <th className="py-3 px-4">Product Name</th>
                                 <th className="py-3 px-3 w-36">Brand</th>
                                 <th className="py-3 px-3 w-28">Unit</th>
                                 <th className="py-3 px-3 w-32">Rate (₹)</th>
                                 <th className="py-3 px-3 w-28">Trend</th>
                                 <th className="py-3 px-3 w-32">Status</th>
                                 <th className="py-3 px-3 w-36">Source</th>
-                                <th className="py-3 px-3 w-24 text-right">Actions</th>
+                                <th className="py-3 px-4 w-24 text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-border">
+                        <tbody className="divide-y divide-border text-xs">
                             {/* Top Inline Creation Row */}
                             {isAddingNew && (
                                 <tr className="bg-primary/5 border-b-2 border-primary">
-                                    <td className="p-2">
+                                    <td className="p-2 pl-3">
                                         <Input
                                             autoFocus
                                             placeholder="e.g., UltraTech OPC 53"
                                             value={newItem.productName}
                                             onChange={(e) => setNewItem({ ...newItem, productName: e.target.value })}
-                                            className="h-8 text-xs bg-surface"
+                                            className="h-8 text-xs font-medium bg-surface text-heading"
                                         />
                                     </td>
                                     <td className="p-2">
@@ -276,14 +277,14 @@ export const RateConfigurationItemsMain: React.FC = () => {
                                             placeholder="Brand"
                                             value={newItem.brand}
                                             onChange={(e) => setNewItem({ ...newItem, brand: e.target.value })}
-                                            className="h-8 text-xs bg-surface"
+                                            className="h-8 text-xs font-medium bg-surface text-heading"
                                         />
                                     </td>
                                     <td className="p-2">
                                         <select
                                             value={newItem.unit}
                                             onChange={(e) => setNewItem({ ...newItem, unit: e.target.value as IMaterialUnit })}
-                                            className="h-8 w-full border border-border rounded-md px-2 bg-surface text-heading text-xs outline-none focus:border-primary"
+                                            className="h-8 w-full border border-border rounded-md px-2 bg-surface font-medium text-heading text-xs outline-none focus:border-primary"
                                         >
                                             {UNITS.map((u) => (
                                                 <option key={u} value={u}>{u}</option>
@@ -296,15 +297,15 @@ export const RateConfigurationItemsMain: React.FC = () => {
                                             placeholder="0.00"
                                             value={newItem.currentRate || ''}
                                             onChange={(e) => setNewItem({ ...newItem, currentRate: parseFloat(e.target.value) || 0 })}
-                                            className="h-8 text-xs bg-surface"
+                                            className="h-8 text-xs font-semibold text-primary bg-surface"
                                         />
                                     </td>
-                                    <td className="p-2 text-muted text-[11px]">—</td>
+                                    <td className="p-2 text-muted font-medium text-[11px]">—</td>
                                     <td className="p-2">
                                         <select
                                             value={newItem.status}
                                             onChange={(e) => setNewItem({ ...newItem, status: e.target.value as IMaterialItemStatus })}
-                                            className="h-8 w-full border border-border rounded-md px-2 bg-surface text-heading text-xs outline-none focus:border-primary"
+                                            className="h-8 w-full border border-border rounded-md px-2 bg-surface font-medium text-heading text-xs outline-none focus:border-primary"
                                         >
                                             {STATUSES.map((s) => (
                                                 <option key={s} value={s}>{s}</option>
@@ -316,10 +317,10 @@ export const RateConfigurationItemsMain: React.FC = () => {
                                             placeholder="Quotation / Vendor"
                                             value={newItem.source}
                                             onChange={(e) => setNewItem({ ...newItem, source: e.target.value })}
-                                            className="h-8 text-xs bg-surface"
+                                            className="h-8 text-xs font-medium bg-surface text-heading"
                                         />
                                     </td>
-                                    <td className="p-2 text-right">
+                                    <td className="p-2 pr-3 text-right">
                                         <div className="flex items-center justify-end gap-1">
                                             <Button
                                                 variant="ghost"
@@ -346,14 +347,14 @@ export const RateConfigurationItemsMain: React.FC = () => {
                             {/* Data Loading State */}
                             {isLoading ? (
                                 <tr>
-                                    <td colSpan={8} className="py-8 text-center text-muted">
+                                    <td colSpan={8} className="py-8 text-center text-muted font-medium">
                                         <Loader2 className="w-5 h-5 animate-spin mx-auto mb-2 text-primary" />
                                         Loading materials...
                                     </td>
                                 </tr>
                             ) : filteredItems.length === 0 && !isAddingNew ? (
                                 <tr>
-                                    <td colSpan={8} className="py-8 text-center text-muted">
+                                    <td colSpan={8} className="py-8 text-center text-muted font-medium">
                                         No material items configured under this category.
                                     </td>
                                 </tr>
@@ -363,27 +364,27 @@ export const RateConfigurationItemsMain: React.FC = () => {
 
                                     if (isEditing) {
                                         return (
-                                            <tr key={item._id} className="bg-surface-hover/30 border-y border-primary/20">
-                                                <td className="p-2">
+                                            <tr key={item._id} className="bg-surface-hover/50 border-y border-primary/20">
+                                                <td className="p-2 pl-3">
                                                     <Input
                                                         autoFocus
                                                         value={editRowData.productName || ''}
                                                         onChange={(e) => setEditRowData({ ...editRowData, productName: e.target.value })}
-                                                        className="h-8 text-xs bg-surface"
+                                                        className="h-8 text-xs font-medium bg-surface text-heading"
                                                     />
                                                 </td>
                                                 <td className="p-2">
                                                     <Input
                                                         value={editRowData.brand || ''}
                                                         onChange={(e) => setEditRowData({ ...editRowData, brand: e.target.value })}
-                                                        className="h-8 text-xs bg-surface"
+                                                        className="h-8 text-xs font-medium bg-surface text-heading"
                                                     />
                                                 </td>
                                                 <td className="p-2">
                                                     <select
                                                         value={editRowData.unit || item.unit}
                                                         onChange={(e) => setEditRowData({ ...editRowData, unit: e.target.value as IMaterialUnit })}
-                                                        className="h-8 w-full border border-border rounded-md px-2 bg-surface text-heading text-xs outline-none focus:border-primary"
+                                                        className="h-8 w-full border border-border rounded-md px-2 bg-surface font-medium text-heading text-xs outline-none focus:border-primary"
                                                     >
                                                         {UNITS.map((u) => (
                                                             <option key={u} value={u}>{u}</option>
@@ -395,15 +396,15 @@ export const RateConfigurationItemsMain: React.FC = () => {
                                                         type="number"
                                                         value={editRowData.currentRate ?? ''}
                                                         onChange={(e) => setEditRowData({ ...editRowData, currentRate: parseFloat(e.target.value) || 0 })}
-                                                        className="h-8 text-xs bg-surface"
+                                                        className="h-8 text-xs font-semibold text-primary bg-surface"
                                                     />
                                                 </td>
-                                                <td className="p-2 text-muted text-[11px]">—</td>
+                                                <td className="p-2 text-muted font-medium text-[11px]">—</td>
                                                 <td className="p-2">
                                                     <select
                                                         value={editRowData.status || item.status}
                                                         onChange={(e) => setEditRowData({ ...editRowData, status: e.target.value as IMaterialItemStatus })}
-                                                        className="h-8 w-full border border-border rounded-md px-2 bg-surface text-heading text-xs outline-none focus:border-primary"
+                                                        className="h-8 w-full border border-border rounded-md px-2 bg-surface font-medium text-heading text-xs outline-none focus:border-primary"
                                                     >
                                                         {STATUSES.map((s) => (
                                                             <option key={s} value={s}>{s}</option>
@@ -414,10 +415,10 @@ export const RateConfigurationItemsMain: React.FC = () => {
                                                     <Input
                                                         value={editRowData.source || ''}
                                                         onChange={(e) => setEditRowData({ ...editRowData, source: e.target.value })}
-                                                        className="h-8 text-xs bg-surface"
+                                                        className="h-8 text-xs font-medium bg-surface text-heading"
                                                     />
                                                 </td>
-                                                <td className="p-2 text-right">
+                                                <td className="p-2 pr-3 text-right">
                                                     <div className="flex items-center justify-end gap-1">
                                                         <Button
                                                             variant="ghost"
@@ -443,72 +444,72 @@ export const RateConfigurationItemsMain: React.FC = () => {
                                     }
 
                                     return (
-                                        <tr key={item._id} className="hover:bg-surface-hover/40 transition-colors">
-                                            <td className="py-2.5 px-3 font-medium text-heading">
+                                        <tr key={item._id} className="hover:bg-surface-hover/50 transition-colors group">
+                                            <td className="py-3 px-4 font-semibold text-heading text-sm">
                                                 {item.productName}
                                             </td>
-                                            <td className="py-2.5 px-3 text-muted">
+                                            <td className="py-3 px-3 text-body font-medium">
                                                 {item.brand || '—'}
                                             </td>
-                                            <td className="py-2.5 px-3">
-                                                <span className="px-1.5 py-0.5 font-mono text-[11px] rounded bg-surface-hover border border-border text-muted">
+                                            <td className="py-3 px-3">
+                                                <span className="px-2 py-0.5 font-mono text-[11px] font-semibold rounded bg-page border border-border text-heading shadow-sm">
                                                     {item.unit}
                                                 </span>
                                             </td>
-                                            <td className="py-2.5 px-3 font-semibold text-heading">
+                                            <td className="py-3 px-3 font-bold text-primary text-sm tracking-wide">
                                                 ₹{item.currentRate.toLocaleString('en-IN')}
                                             </td>
-                                            <td className="py-2.5 px-3">
+                                            <td className="py-3 px-3">
                                                 {item.rateChangeDirection === 'increase' && (
-                                                    <span className="inline-flex items-center gap-0.5 text-danger font-medium text-[11px]">
-                                                        <TrendingUp className="w-3 h-3" />
+                                                    <span className="inline-flex items-center gap-0.5 text-danger font-semibold text-[11px]">
+                                                        <TrendingUp className="w-3.5 h-3.5" />
                                                         {item.rateChangePercentage}%
                                                     </span>
                                                 )}
                                                 {item.rateChangeDirection === 'decrease' && (
-                                                    <span className="inline-flex items-center gap-0.5 text-success font-medium text-[11px]">
-                                                        <TrendingDown className="w-3 h-3" />
+                                                    <span className="inline-flex items-center gap-0.5 text-success font-semibold text-[11px]">
+                                                        <TrendingDown className="w-3.5 h-3.5" />
                                                         {Math.abs(item.rateChangePercentage)}%
                                                     </span>
                                                 )}
                                                 {item.rateChangeDirection === 'no_change' && (
-                                                    <span className="inline-flex items-center gap-0.5 text-muted text-[11px]">
-                                                        <Minus className="w-3 h-3" /> 0%
+                                                    <span className="inline-flex items-center gap-0.5 text-muted font-medium text-[11px]">
+                                                        <Minus className="w-3.5 h-3.5" /> 0%
                                                     </span>
                                                 )}
                                             </td>
-                                            <td className="py-2.5 px-3">
+                                            <td className="py-3 px-3">
                                                 <span
-                                                    className={`inline-block px-1.5 py-0.5 text-[10px] font-medium rounded ${item.status === 'Active'
-                                                            ? 'bg-success/10 text-success'
+                                                    className={`inline-block px-2 py-0.5 text-[11px] font-semibold rounded-md ${item.status === 'Active'
+                                                            ? 'bg-success/15 text-success'
                                                             : item.status === 'Discontinued'
                                                                 ? 'bg-danger/10 text-danger'
-                                                                : 'bg-muted/10 text-muted'
+                                                                : 'bg-muted/15 text-body'
                                                         }`}
                                                 >
                                                     {item.status}
                                                 </span>
                                             </td>
-                                            <td className="py-2.5 px-3 text-muted truncate max-w-[140px]">
+                                            <td className="py-3 px-3 text-body font-medium truncate max-w-[140px]">
                                                 {item.source || '—'}
                                             </td>
-                                            <td className="py-2.5 px-3 text-right">
+                                            <td className="py-3 px-4 text-right">
                                                 <div className="flex items-center justify-end gap-1">
                                                     <Button
                                                         variant="ghost"
                                                         size="sm"
                                                         onClick={() => handleStartEdit(item)}
-                                                        className="h-7 w-7 p-0 text-muted hover:text-primary"
+                                                        className="h-7 w-7 p-0 text-muted hover:text-primary hover:bg-surface-hover"
                                                     >
-                                                        <Edit2 className="w-3.5 h-3.5" />
+                                                        <Edit2 className="w-4 h-4" />
                                                     </Button>
                                                     <Button
                                                         variant="ghost"
                                                         size="sm"
                                                         onClick={() => handleDeleteItem(item._id, item.productName)}
-                                                        className="h-7 w-7 p-0 text-muted hover:text-danger"
+                                                        className="h-7 w-7 p-0 text-muted hover:text-danger hover:bg-danger/10"
                                                     >
-                                                        <Trash2 className="w-3.5 h-3.5" />
+                                                        <Trash2 className="w-4 h-4" />
                                                     </Button>
                                                 </div>
                                             </td>

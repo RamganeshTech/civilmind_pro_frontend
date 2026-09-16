@@ -1,6 +1,6 @@
 import { useState, useEffect, type FormEvent } from 'react';
 import {
-  Building2, Mail, Phone, Save, Hash, Calendar, Loader2
+  Building2, Mail, Phone, Save, Calendar, Loader2
 } from 'lucide-react';
 import { useAuthData } from '../../hooks/useAuthData';
 import { Input } from '../../components/ui/Input'; // Adjust path

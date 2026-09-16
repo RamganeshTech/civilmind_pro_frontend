@@ -325,6 +325,39 @@ export const useRecoverMaterialItem = () => {
   });
 };
 
+
+
+// --- 9. Bulk Recover Labour Items ---
+// Route: PATCH /api/v1/labour-items/:organizationId/recover
+export const useBulkRecoverMaterialItems = () => {
+  const { currentRole, organizationId } = useAuthData();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (payload: { itemIds?: string[]; refNos?: string[]; fromDate?: string; toDate?: string; }) => {
+      try {
+        checkPermission(currentRole, WRITE_ROLES);
+        if (!organizationId) throw new Error("Organization ID is missing");
+
+        const { data } = await Api.patch<BaseApiResponse<any>>(
+          `/api/v1/material-items/${organizationId}/recover`,
+          payload
+        );
+
+        if (data.ok) return data;
+        throw new Error(data.message || 'Bulk labour item recovery failed');
+      } catch (error: any) {
+        const errorMessage = error.response?.data?.message || error.message || 'An unexpected error occurred';
+        throw new Error(errorMessage, { cause: error });
+      }
+    },
+    onSuccess: () => {
+       queryClient.invalidateQueries({ queryKey: ['inactive-material-items', organizationId] });
+      queryClient.invalidateQueries({ queryKey: ['material-items', organizationId] });
+    },
+  });
+};
+
 // --- 8. Hard Delete (Permanent Delete) Material Item Hook ---
 // Route: DELETE /api/v1/material-items/:organizationId/:itemId/hard-delete
 export const useHardDeleteMaterialItem = () => {

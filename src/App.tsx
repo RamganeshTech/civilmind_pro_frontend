@@ -15,6 +15,10 @@ import RateConfigurationMaterialMain from './pages/materialRate_pages/materialRa
 import { RateConfigurationItemsMain } from './pages/materialRate_pages/materialRateItems_pages/RateConfigurationItemsMain'
 import { RateConfigBackupMaterialCategoryMain } from './pages/materialRate_pages/materialRateCategory/backup/RateConfigBackupMaterialCategoryMain'
 import { RateConfigBackupItemsMain } from './pages/materialRate_pages/materialRateItems_pages/backups/RateConfigBackupItemsMain'
+import LabourCategoryMain from './pages/labourRate_pages/labourCategory_pages/LabourCategoryMain'
+import { LabourItemBackupMain } from './pages/labourRate_pages/labourItem_pages/backup/LabourItemBackupMain'
+import { LabourItemMain } from './pages/labourRate_pages/labourItem_pages/LabourItemMain'
+import { LabourCategoryBackupMain } from './pages/labourRate_pages/labourCategory_pages/backup/LabourCategoryBackupMain'
 
 const App = () => {
   const { isLoading } = useAuthCheck();
@@ -50,12 +54,22 @@ const App = () => {
             <Route element={<ProtectedRoute allowedRoles={MANAGEMENT_ONLY} />}>
               <Route index path="projects" element={<ProjectMain />} />
               <Route path="organization" element={<OrganizationSettings />} />
+              
               <Route path="rate-configuration" element={<RateConfigurationMaterialMain />} >
                 <Route path="single/:categoryId" element={<RateConfigurationItemsMain />} >
                   <Route path="backup" element={<RateConfigBackupItemsMain />} />
                 </Route>
               </Route>
+              
               <Route path="rate-configuration-backup" element={<RateConfigBackupMaterialCategoryMain />} />
+
+              <Route path="labour-configuration" element={<LabourCategoryMain />} >
+                <Route path="single/:categoryId" element={<LabourItemMain />} >
+                  <Route path="backup" element={<LabourItemBackupMain />} />
+                </Route>
+              </Route>
+
+              <Route path="labour-configuration-backup" element={<LabourCategoryBackupMain />} />
             </Route>
           </Route>
 
