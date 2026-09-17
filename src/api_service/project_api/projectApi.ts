@@ -315,6 +315,37 @@ export const useInfiniteProjects = (filters: IProjectFilters = {}) => {
   });
 };
 
+
+
+export const useGetProjectsDropdown = () => {
+  const { currentRole, organizationId } = useAuthData();
+
+  return useQuery({
+    queryKey: ['projects-dropdown', organizationId],
+    queryFn: async () => {
+      try {
+        checkPermission(currentRole, ['owner', 'admin', 'cto', 'staff']);
+
+        if (!organizationId) throw new Error("Organization ID is missing");
+
+        const { data } = await Api.get<BaseApiResponse<any>>(
+          `/api/v1/projects/${organizationId}/dropdown`
+        );
+
+        if (data.ok) {
+          return data.data;
+        }
+        throw new Error(data.message || 'Failed to fetch projects dropdown');
+      } catch (error: any) {
+        const errorMessage =
+          error.response?.data?.message || error.message || 'An unexpected error occurred';
+        throw new Error(errorMessage, { cause: error });
+      }
+    },
+    enabled: !!currentRole && !!organizationId,
+  });
+};
+
 // --- 2. Get Single Project Hook ---
 export const useGetSingleProject = (projectId: string | undefined) => {
   const { currentRole, organizationId } = useAuthData();

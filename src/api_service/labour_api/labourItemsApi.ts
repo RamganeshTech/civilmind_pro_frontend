@@ -72,6 +72,51 @@ export const useGetSingleLabourItem = (itemId: string | undefined) => {
   });
 };
 
+
+
+// --- Labour Item Types ---
+export interface LabourItemDropdown {
+  _id: string;
+  role: string;
+  skillLevel: string;
+  rate: number;
+  halfDayRate: number;
+  otPerHour: number;
+  refNo?: string;
+}
+
+export const useGetLabourItemsDropdown = () => {
+  const { currentRole, organizationId } = useAuthData();
+
+  return useQuery({
+    queryKey: ['labour-items-dropdown', organizationId],
+    queryFn: async () => {
+      try {
+        checkPermission(currentRole, READ_ROLES);
+
+        if (!organizationId) throw new Error("Organization ID is missing");
+
+        // Adjust the base route path to match your express setup (e.g. /labour-item or /labour-items)
+        const { data } = await Api.get<BaseApiResponse<{ items: LabourItemDropdown[] }>>(
+          `/api/v1/labour-item/${organizationId}/dropdown`
+        );
+
+        if (data.ok) {
+          return data.data.items;
+        }
+        throw new Error(data.message || 'Failed to fetch labour items dropdown');
+      } catch (error: any) {
+        const errorMessage =
+          error.response?.data?.message || error.message || 'An unexpected error occurred';
+        throw new Error(errorMessage, { cause: error });
+      }
+    },
+    enabled: !!currentRole && !!organizationId,
+  });
+};
+
+
+
 // --- 4. Create Labour Item ---
 // Route: POST /api/v1/labour-items/:organizationId
 export const useCreateLabourItem = () => {

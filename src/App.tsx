@@ -19,6 +19,8 @@ import LabourCategoryMain from './pages/labourRate_pages/labourCategory_pages/La
 import { LabourItemBackupMain } from './pages/labourRate_pages/labourItem_pages/backup/LabourItemBackupMain'
 import { LabourItemMain } from './pages/labourRate_pages/labourItem_pages/LabourItemMain'
 import { LabourCategoryBackupMain } from './pages/labourRate_pages/labourCategory_pages/backup/LabourCategoryBackupMain'
+import { BoqMain } from './pages/boq_pages/BoqMain'
+import BoqSingle from './pages/boq_pages/BoqSingle'
 
 const App = () => {
   const { isLoading } = useAuthCheck();
@@ -54,13 +56,13 @@ const App = () => {
             <Route element={<ProtectedRoute allowedRoles={MANAGEMENT_ONLY} />}>
               <Route index path="projects" element={<ProjectMain />} />
               <Route path="organization" element={<OrganizationSettings />} />
-              
+
               <Route path="rate-configuration" element={<RateConfigurationMaterialMain />} >
                 <Route path="single/:categoryId" element={<RateConfigurationItemsMain />} >
                   <Route path="backup" element={<RateConfigBackupItemsMain />} />
                 </Route>
               </Route>
-              
+
               <Route path="rate-configuration-backup" element={<RateConfigBackupMaterialCategoryMain />} />
 
               <Route path="labour-configuration" element={<LabourCategoryMain />} >
@@ -71,6 +73,13 @@ const App = () => {
 
               <Route path="labour-configuration-backup" element={<LabourCategoryBackupMain />} />
             </Route>
+
+
+            <Route path="boq" element={<BoqMain />} >
+              <Route path="single/:boqId" element={<BoqSingle />} />
+            </Route>
+
+
           </Route>
 
 

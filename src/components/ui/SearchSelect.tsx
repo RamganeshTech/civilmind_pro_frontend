@@ -1,11 +1,6 @@
 // components/ui/SearchSelect.tsx
 import {
-  useState,
-  useRef,
-  useEffect,
-  useId,
-  useMemo,
-  type KeyboardEvent,
+  useState,useRef,useEffect,useId,useMemo,type KeyboardEvent,
 } from 'react';
 import { ChevronDown, X, Check, Search } from 'lucide-react';
 import { Label } from './Label';
@@ -181,25 +176,15 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
         </span>
 
         <input
-          ref={inputRef}
-          id={inputId}
-          type="text"
-          role="combobox"
-          aria-expanded={isOpen}
-          aria-controls={listboxId}
+          ref={inputRef} id={inputId} type="text" role="combobox" aria-expanded={isOpen} aria-controls={listboxId}
           aria-autocomplete="list"
           aria-activedescendant={
             isOpen && filteredOptions[highlightedIndex]
               ? `${listboxId}-option-${highlightedIndex}`
               : undefined
           }
-          aria-required={required || undefined}
-          aria-invalid={!!error}
-          disabled={disabled}
-          placeholder={placeholder}
-          value={displayValue}
-          onFocus={openDropdown}
-          onClick={openDropdown}
+          aria-required={required || undefined} aria-invalid={!!error} disabled={disabled} placeholder={placeholder}
+          value={displayValue}  onFocus={openDropdown}  onClick={openDropdown}
           onChange={(e) => {
             setSearchTerm(e.target.value);
             setHighlightedIndex(0); // <-- Added here

@@ -153,6 +153,54 @@ export const useGetSingleMaterialItem = (itemId: string | undefined) => {
     });
 };
 
+// --- Material Item Types ---
+export interface MaterialItemDropdown {
+  _id: string;
+  productName: string;
+  brand?: string;
+  unit: string;
+  currentRate: number;
+  refNo?: string;
+}
+
+
+// ------------------------------------------------------------------
+// 1. Get Material Items Dropdown Hook
+// Route: GET /api/v1/material-item/:organizationId/dropdown
+// ------------------------------------------------------------------
+export const useGetMaterialItemsDropdown = () => {
+  const { currentRole, organizationId } = useAuthData();
+
+  return useQuery({
+    queryKey: ['material-items-dropdown', organizationId],
+    queryFn: async () => {
+      try {
+        checkPermission(currentRole, READ_ROLES);
+
+        if (!organizationId) throw new Error("Organization ID is missing");
+
+        // Adjust the base route path to match your express setup (e.g. /material-item or /material-items)
+        const { data } = await Api.get<BaseApiResponse<{ items: MaterialItemDropdown[] }>>(
+          `/api/v1/material-item/${organizationId}/dropdown`
+        );
+
+        if (data.ok) {
+          return data.data.items;
+        }
+        throw new Error(data.message || 'Failed to fetch material items dropdown');
+      } catch (error: any) {
+        const errorMessage =
+          error.response?.data?.message || error.message || 'An unexpected error occurred';
+        throw new Error(errorMessage, { cause: error });
+      }
+    },
+    enabled: !!currentRole && !!organizationId,
+  });
+};
+
+
+
+
 // --- 3. Create Material Item Hook ---
 // Route: POST /api/v1/material-items/:organizationId
 export const useCreateMaterialItem = () => {

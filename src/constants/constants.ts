@@ -24,7 +24,7 @@ export const AUTH_CHECK_ROLES: ValidUserRole[] = [
 ];
 
 export const STAFF_ALL: UserRole[] = [
-   "admin",
+    "admin",
     "staff",
     "cto",
 ]
@@ -59,9 +59,10 @@ export interface MenuItem {
 export const baseManagementMenu: MenuItem[] = [
     { name: 'Dashboard', path: "/layout/projects", icon: LayoutDashboard },
     { name: 'Organization', path: "/layout/organization", icon: Building2 },
-    { name: 'Projects',  path: '/layout/projects',  icon: FolderKanban},
-    { name: 'Rate Masters',  path: '/layout/rate-configuration',  icon: Layers},
-    { name: 'Labour Category',  path: '/layout/labour-configuration',  icon: HardHat},
+    { name: 'Projects', path: '/layout/projects', icon: FolderKanban },
+    { name: 'Rate Masters', path: '/layout/rate-configuration', icon: Layers },
+    { name: 'Labour Category', path: '/layout/labour-configuration', icon: HardHat },
+    { name: 'BOQ', path: '/layout/boq', icon: HardHat },
 
     // { name: 'Class', path: "/dashboard/class", icon: 'fas fa-chalkboard' },
 
